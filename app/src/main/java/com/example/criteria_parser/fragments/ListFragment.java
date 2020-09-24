@@ -59,13 +59,17 @@ public class ListFragment extends Fragment implements ScanItemListener {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_list_layout,container ,false);
         viewModel = new ViewModelProvider(this).get(CriteriaParserViewModel.class);
         viewModel.fetchCriteria();
+        binding.progressView.setVisibility(View.VISIBLE);
         viewModel.getScanListLiveData().observe(this,this::onScanListResponse);
         return binding.getRoot();
     }
 
     public void onScanListResponse(ScanResponse scanResponse) {
+        binding.progressView.setVisibility(View.GONE);
         if (scanResponse.getErrorMessage() != null) {
             Toast.makeText(getContext(),""+scanResponse.getErrorMessage(),Toast.LENGTH_SHORT).show();
+            binding.errorText.setVisibility(View.VISIBLE);
+            binding.errorText.setText(scanResponse.getErrorMessage());
             return;
         }
         ScanListingAdapter scanListingAdapter = new ScanListingAdapter(

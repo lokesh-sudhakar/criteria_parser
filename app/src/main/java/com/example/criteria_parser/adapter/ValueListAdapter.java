@@ -18,8 +18,8 @@ import java.util.List;
  */
 public class ValueListAdapter extends RecyclerView.Adapter<ValueListAdapter.ValueListViewHolder> {
 
-    ValueListItemLayoutBinding binding;
-    List<Double> values;
+    private ValueListItemLayoutBinding binding;
+    private List<Double> values;
 
     public ValueListAdapter(List<Double> values){
         this.values = values;

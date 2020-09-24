@@ -1,6 +1,7 @@
 package com.example.criteria_parser.listeners;
 
-import com.example.criteria_parser.model.Criteria;
+import com.example.criteria_parser.model.CriteriaValues;
+import com.example.criteria_parser.model.Indicator;
 
 /**
  * @author Lokesh chennamchetty
@@ -8,5 +9,7 @@ import com.example.criteria_parser.model.Criteria;
  */
 public interface CriteriaItemListener {
 
-    void onCriteriaClick(Criteria criteria);
+    void onCriteriaValueClick(CriteriaValues criteriaValues);
+
+    void onCriteriaIndicatorClick(Indicator indicator);
 }

@@ -26,7 +26,8 @@
         android:layout_height="wrap_content"
         android:paddingBottom="8dp"
         android:paddingStart="8dp"
-        tools:text="nkjdnndjw"
+        tools:text="and"
+        android:text="and"
         android:textColor="@color/textColorWhite"
         />
 </LinearLayout>

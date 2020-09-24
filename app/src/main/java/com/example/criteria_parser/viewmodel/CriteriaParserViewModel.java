@@ -59,11 +59,11 @@ public class CriteriaParserViewModel extends AndroidViewModel {
     }
 
     public void onScanResponse(List<ScanData> scanDataList) {
-        scanListLiveData.postValue(new ScanResponse(parseCriterias(scanDataList)));
+        scanListLiveData.setValue(new ScanResponse(parseCriterias(scanDataList)));
     }
 
     public void onError(Throwable throwable) {
-        scanListLiveData.postValue(new ScanResponse(throwable.getMessage()));
+        scanListLiveData.setValue(new ScanResponse(throwable.getMessage()));
         Log.d(TAG, "onError: " + throwable.getMessage());
     }
 

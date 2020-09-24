@@ -30,15 +30,12 @@ public class CriteriaParserViewModel extends AndroidViewModel {
     private static final String TAG = "criteria";
     private CriteriaRepository repository;
     private CompositeDisposable compositeDisposable;
-    private Gson gson;
     private MutableLiveData<ScanResponse> scanListLiveData = new MutableLiveData<>();
 
     public CriteriaParserViewModel(@NonNull Application application) {
         super(application);
         repository = new CriteriaRepository(RetrofitInstance.getRetrofit());
         compositeDisposable = new CompositeDisposable();
-         gson= new Gson();
-
     }
 
     public void fetchCriteria() {

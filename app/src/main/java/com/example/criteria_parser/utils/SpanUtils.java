@@ -23,7 +23,6 @@ import java.util.regex.Pattern;
 public class SpanUtils {
 
     public static SpannableStringBuilder getCriteriaSpannableString(Criteria criteria, CriteriaItemListener listener) {
-        Matcher matcher = Pattern.compile(Constants.Regex.DOLLAR_REGEX).matcher(criteria.getText());
         SpannableStringBuilder spannableString = new SpannableStringBuilder(criteria.getText());
         for (Map.Entry<String, BaseCriteria> entry : criteria.getParsedVariable().entrySet()) {
             String replaceableString = "";

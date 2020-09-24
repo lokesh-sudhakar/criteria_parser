@@ -15,7 +15,6 @@ public class CriteriaRepository {
 
     private Retrofit mRetrofit;
 
-
     public CriteriaRepository(Retrofit mRetrofit) {
         this.mRetrofit = mRetrofit;
     }

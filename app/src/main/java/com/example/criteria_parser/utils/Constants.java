@@ -14,6 +14,10 @@ public interface Constants {
         String DOLLAR_REGEX = "\\$[(0-9)]+";
     }
 
+    interface Color {
+        String GREEN = "green";
+    }
+
     interface Type {
         String VARIABLE = "variable";
         String VALUE = "value";

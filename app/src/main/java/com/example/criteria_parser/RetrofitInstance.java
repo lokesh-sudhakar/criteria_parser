@@ -21,7 +21,7 @@ public class RetrofitInstance {
                     .setLenient()
                     .create();
             retrofit = new Retrofit.Builder()
-                    .baseUrl("https://mp-android-challenge.herokuapp.com")
+                    .baseUrl(BuildConfig.BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build();

@@ -4,16 +4,15 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.style.ClickableSpan;
-import android.util.Log;
 import android.view.View;
 
 import com.example.criteria_parser.listeners.CriteriaItemListener;
+import com.example.criteria_parser.model.BaseCriteria;
 import com.example.criteria_parser.model.Criteria;
 import com.example.criteria_parser.model.CriteriaValues;
 import com.example.criteria_parser.model.Indicator;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -23,33 +22,27 @@ import java.util.regex.Pattern;
  */
 public class SpanUtils {
 
-    private static final String TAG = "criteria";
-
     public static SpannableStringBuilder getCriteriaSpannableString(Criteria criteria, CriteriaItemListener listener) {
-        Gson gson = new Gson();
         Matcher matcher = Pattern.compile(Constants.Regex.DOLLAR_REGEX).matcher(criteria.getText());
         SpannableStringBuilder spannableString = new SpannableStringBuilder(criteria.getText());
-        while (matcher.find()) {
-            Log.d(TAG, "regex keys: " + matcher.group(0));
-            String key = matcher.group(0);
-            JsonObject keyJsonObject = criteria.getVariable().getAsJsonObject(key);
-            String keyType = keyJsonObject.get(Constants.Keys.TYPE).getAsString();
+        for (Map.Entry<String, BaseCriteria> entry : criteria.getParsedVariable().entrySet()) {
             String replaceableString = "";
             ClickableSpan clickableSpan = null;
-            if (keyType.equalsIgnoreCase(Constants.Type.VALUE)) {
-                CriteriaValues criteriaValues = gson.fromJson(keyJsonObject.toString(), CriteriaValues.class);
+            if (entry.getValue() instanceof CriteriaValues) {
+                CriteriaValues criteriaValues = (CriteriaValues) entry.getValue();
                 replaceableString = BasicUtils.wrapParenthesis(criteriaValues.getValues().get(0).toString());
                 clickableSpan = getValueClickableSpan(criteriaValues, listener);
-            } else if (keyType.equalsIgnoreCase(Constants.Type.INDICATOR)) {
-                Indicator indicator = gson.fromJson(keyJsonObject.toString(), Indicator.class);
+            } else if (entry.getValue() instanceof Indicator) {
+                Indicator indicator = (Indicator) entry.getValue();
                 replaceableString = BasicUtils.wrapParenthesis(indicator.getDefaultValue());
-
                 clickableSpan = getIndicatorClickableSpan(indicator, listener);
             }
-            spannableString.replace(matcher.start(), matcher.end(), replaceableString, 0,
+            int start = criteria.getText().indexOf(entry.getKey());
+            int end = start+entry.getKey().length();
+            spannableString.replace(start, end, replaceableString, 0,
                     replaceableString.length());
-            spannableString.setSpan(clickableSpan, matcher.start(),
-                    matcher.start() + replaceableString.length(),
+            spannableString.setSpan(clickableSpan, start,
+                    start + replaceableString.length(),
                     Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
         return spannableString;

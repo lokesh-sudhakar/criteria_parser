@@ -11,6 +11,8 @@ import com.example.criteria_parser.RetrofitInstance;
 import com.example.criteria_parser.model.ScanData;
 import com.example.criteria_parser.model.ScanResponse;
 import com.example.criteria_parser.repository.CriteriaRepository;
+import com.example.criteria_parser.utils.BasicUtils;
+import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -28,12 +30,15 @@ public class CriteriaParserViewModel extends AndroidViewModel {
     private static final String TAG = "criteria";
     private CriteriaRepository repository;
     private CompositeDisposable compositeDisposable;
+    private Gson gson;
     private MutableLiveData<ScanResponse> scanListLiveData = new MutableLiveData<>();
 
     public CriteriaParserViewModel(@NonNull Application application) {
         super(application);
         repository = new CriteriaRepository(RetrofitInstance.getRetrofit());
         compositeDisposable = new CompositeDisposable();
+         gson= new Gson();
+
     }
 
     public void fetchCriteria() {
@@ -42,14 +47,12 @@ public class CriteriaParserViewModel extends AndroidViewModel {
                 .subscribe(this::onScanResponse, this::onError));
     }
 
-
     public MutableLiveData<ScanResponse> getScanListLiveData() {
         return scanListLiveData;
     }
 
-
     public void onScanResponse(List<ScanData> scanDataList) {
-        scanListLiveData.postValue(new ScanResponse(scanDataList));
+        scanListLiveData.postValue(new ScanResponse(BasicUtils.parseCriterias(scanDataList)));
     }
 
     public void onError(Throwable throwable) {

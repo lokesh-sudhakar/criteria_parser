@@ -5,7 +5,6 @@ import com.example.criteria_parser.viewmodel.CriteriaParserViewModel;
 import javax.inject.Singleton;
 
 import dagger.Component;
-import retrofit2.Retrofit;
 
 /**
  * @author Lokesh chennamchetty
@@ -15,8 +14,6 @@ import retrofit2.Retrofit;
 @Singleton
 @Component(modules = MainModule.class)
 public interface AppComponent {
-
-    Retrofit getRetrofit();
 
     void inject(CriteriaParserViewModel viewModel);
 

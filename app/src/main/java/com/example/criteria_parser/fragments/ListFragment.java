@@ -46,7 +46,6 @@ public class ListFragment extends Fragment implements ScanItemListener {
 
     @Override
     public void onItemClick(ScanData scanData) {
-        Toast.makeText(activityContext,"clicked",Toast.LENGTH_SHORT).show();
         listener.onScanItemClick(scanData);
     }
 

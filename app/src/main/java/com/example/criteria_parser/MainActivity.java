@@ -8,6 +8,7 @@ import android.os.Bundle;
 import com.example.criteria_parser.databinding.ActivityMainBinding;
 import com.example.criteria_parser.fragments.CriteriaValueListFragment;
 import com.example.criteria_parser.fragments.DetailFragment;
+import com.example.criteria_parser.fragments.IndicatorCriteriaFragment;
 import com.example.criteria_parser.fragments.ListFragment;
 import com.example.criteria_parser.model.CriteriaValues;
 import com.example.criteria_parser.model.Indicator;
@@ -48,6 +49,9 @@ public class MainActivity extends AppCompatActivity implements ListFragment.List
 
     @Override
     public void onCriteriaIndicatorClick(Indicator indicator) {
-
+        getSupportFragmentManager().beginTransaction()
+                .replace(binding.fragmentContainer.getId(), IndicatorCriteriaFragment.newInstance(indicator))
+                .addToBackStack(null)
+                .commit();
     }
 }

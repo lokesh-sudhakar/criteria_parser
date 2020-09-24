@@ -8,8 +8,8 @@ android {
         applicationId "com.example.criteria_parser"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        versionCode rootProject.versionCode
+        versionName rootProject.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -54,21 +54,24 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     implementation "androidx.appcompat:appcompat:1.0.0"
+    implementation "com.android.support:recyclerview-v7:1.1.0"
 
 
+    //retrofit
     implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofit2"
     implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofit2"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofit2"
 
+    //rxjava 2
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroidVersion"
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxJavaVersion"
-
-
-    implementation "com.android.support:recyclerview-v7:1.1.0"
-
 
     //lifecycle
     implementation "androidx.lifecycle:lifecycle-livedata:$rootProject.lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycleVersion"
     annotationProcessor "android.arch.lifecycle:compiler:$rootProject.lifecycleVersion"
+
+    //dagger
+    implementation "com.google.dagger:dagger:$rootProject.dagger2"
+    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.dagger2"
 }

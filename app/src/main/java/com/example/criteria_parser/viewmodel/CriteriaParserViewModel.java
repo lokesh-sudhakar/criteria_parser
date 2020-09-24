@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.criteria_parser.App;
 import com.example.criteria_parser.model.BaseCriteria;
 import com.example.criteria_parser.model.Criteria;
 import com.example.criteria_parser.model.CriteriaValues;
@@ -26,6 +27,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.inject.Inject;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
@@ -38,13 +41,14 @@ import io.reactivex.schedulers.Schedulers;
 public class CriteriaParserViewModel extends AndroidViewModel {
 
     private static final String TAG = "criteria";
-    private CriteriaRepository repository;
     private CompositeDisposable compositeDisposable;
     private MutableLiveData<ScanResponse> scanListLiveData = new MutableLiveData<>();
+    @Inject
+    CriteriaRepository repository;
 
     public CriteriaParserViewModel(@NonNull Application application) {
         super(application);
-        repository = new CriteriaRepository(RetrofitInstance.getRetrofit());
+        App.getApplicationInstance().getAppComponent().inject(this);
         compositeDisposable = new CompositeDisposable();
     }
 

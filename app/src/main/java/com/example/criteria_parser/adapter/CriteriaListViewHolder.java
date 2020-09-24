@@ -82,7 +82,6 @@ public class CriteriaListViewHolder  extends RecyclerView.ViewHolder {
                 spannableString.replace(matcher.start(),matcher.end(),replacableString,
                         0, replacableString.length());
 
-                listener.onCriteriaValueClick(criteriaValues);
             } else if (keyType.equalsIgnoreCase("indicator")) {
                 Indicator indicator = gson.fromJson(keyJsonObject.toString(),Indicator.class);
                 replacableString = "("+indicator.getDefaultValue()+")";
@@ -90,8 +89,6 @@ public class CriteriaListViewHolder  extends RecyclerView.ViewHolder {
                 spannableString.replace(matcher.start(),matcher.end(),
                         replacableString,0,
                         replacableString.length());
-
-                listener.onCriteriaIndicatorClick(indicator);
             }
             spannableString.setSpan(clickableSpan,matcher.start(),
                     matcher.start()+replacableString.length(),

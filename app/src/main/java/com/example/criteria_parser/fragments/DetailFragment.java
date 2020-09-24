@@ -1,5 +1,6 @@
 package com.example.criteria_parser.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -33,6 +34,14 @@ public class DetailFragment extends Fragment implements CriteriaItemListener {
     public static final String ARG_SCAN_DATE = "arg_scan_date";
     private FragmentDetailLayoutBinding binding;
     private ScanData scanData;
+    private CriteriaClickListeners listeners;
+
+
+    public interface CriteriaClickListeners{
+        void onCriteriaValueClick(CriteriaValues criteriaValues);
+
+        void onCriteriaIndicatorClick(Indicator indicator);
+    }
 
 
     public static DetailFragment newInstance(ScanData scanData) {
@@ -41,6 +50,16 @@ public class DetailFragment extends Fragment implements CriteriaItemListener {
         bundle.putSerializable(ARG_SCAN_DATE, scanData);
         detailFragment.setArguments(bundle);
         return detailFragment;
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof CriteriaClickListeners) {
+            listeners = (CriteriaClickListeners) context;
+        } else {
+            throw  new IllegalArgumentException("Activity has not implemented the CriteriaClickListeners");
+        }
     }
 
     public DetailFragment(){
@@ -76,6 +95,7 @@ public class DetailFragment extends Fragment implements CriteriaItemListener {
 
     @Override
     public void onCriteriaValueClick(CriteriaValues criteriaValues) {
+        listeners.onCriteriaValueClick(criteriaValues);
         Log.d(TAG, "default value : " +
                 Arrays.toString(criteriaValues.getValues().toArray()));
     }

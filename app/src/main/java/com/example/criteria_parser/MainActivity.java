@@ -6,11 +6,15 @@ import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
 
 import com.example.criteria_parser.databinding.ActivityMainBinding;
+import com.example.criteria_parser.fragments.CriteriaValueListFragment;
 import com.example.criteria_parser.fragments.DetailFragment;
 import com.example.criteria_parser.fragments.ListFragment;
+import com.example.criteria_parser.model.CriteriaValues;
+import com.example.criteria_parser.model.Indicator;
 import com.example.criteria_parser.model.ScanData;
 
-public class MainActivity extends AppCompatActivity implements ListFragment.ListFragmentListener {
+public class MainActivity extends AppCompatActivity implements ListFragment.ListFragmentListener,
+    DetailFragment.CriteriaClickListeners{
 
     private ActivityMainBinding binding;
 
@@ -32,5 +36,18 @@ public class MainActivity extends AppCompatActivity implements ListFragment.List
                 .replace(binding.fragmentContainer.getId(), DetailFragment.newInstance(scanData))
                 .addToBackStack(null)
                 .commit();
+    }
+
+    @Override
+    public void onCriteriaValueClick(CriteriaValues criteriaValues) {
+        getSupportFragmentManager().beginTransaction()
+                .replace(binding.fragmentContainer.getId(), CriteriaValueListFragment.newInstance(criteriaValues))
+                .addToBackStack(null)
+                .commit();
+    }
+
+    @Override
+    public void onCriteriaIndicatorClick(Indicator indicator) {
+
     }
 }

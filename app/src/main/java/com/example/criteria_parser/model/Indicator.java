@@ -3,11 +3,13 @@ package com.example.criteria_parser.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * @author Lokesh chennamchetty
  * @date 24/09/2020
  */
-public class Indicator {
+public class Indicator implements Serializable {
 
 
     @SerializedName("type")

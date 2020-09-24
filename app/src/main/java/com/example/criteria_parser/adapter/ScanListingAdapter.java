@@ -4,14 +4,13 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.criteria_parser.R;
 import com.example.criteria_parser.databinding.ListItemLayoutBinding;
 import com.example.criteria_parser.listeners.ScanItemListener;
-import com.example.criteria_parser.model.ScanResponse;
+import com.example.criteria_parser.model.ScanData;
 
 import java.util.List;
 
@@ -21,11 +20,11 @@ import java.util.List;
  */
 public class ScanListingAdapter extends RecyclerView.Adapter<ScanListingViewHolder> {
 
-    private List<ScanResponse> scanList;
+    private List<ScanData> scanList;
     private ListItemLayoutBinding binding;
     private ScanItemListener listener;
 
-    public ScanListingAdapter(List<ScanResponse> scanList,ScanItemListener listener){
+    public ScanListingAdapter(List<ScanData> scanList, ScanItemListener listener){
         this.scanList = scanList;
         this.listener = listener;
     }

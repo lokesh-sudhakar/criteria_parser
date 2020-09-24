@@ -1,6 +1,6 @@
 package com.example.criteria_parser.listeners;
 
-import com.example.criteria_parser.model.ScanResponse;
+import com.example.criteria_parser.model.ScanData;
 
 /**
  * @author Lokesh chennamchetty
@@ -8,5 +8,5 @@ import com.example.criteria_parser.model.ScanResponse;
  */
 public interface ScanItemListener {
 
-    void onItemClick(ScanResponse scanResponse);
+    void onItemClick(ScanData scanData);
 }

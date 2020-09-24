@@ -1,6 +1,6 @@
 package com.example.criteria_parser.repository;
 
-import com.example.criteria_parser.model.ScanResponse;
+import com.example.criteria_parser.model.ScanData;
 
 import java.util.List;
 
@@ -14,6 +14,6 @@ import retrofit2.http.GET;
 public interface CriteriaParserAPI {
 
     @GET(ApiUrls.GET_DATA)
-    Observable<List<ScanResponse>> getScanData();
+    Observable<List<ScanData>> getScanData();
 
 }

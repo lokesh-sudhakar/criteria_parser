@@ -1,8 +1,5 @@
 package com.example.criteria_parser.model;
 
-import com.google.gson.JsonObject;
-import com.google.gson.annotations.SerializedName;
-
 import java.util.List;
 
 /**
@@ -11,60 +8,29 @@ import java.util.List;
  */
 public class ScanResponse {
 
-    @SerializedName("id")
-    private int id;
+    private List<ScanData> scanDataList;
 
-    @SerializedName("name")
-    private String name;
-
-    @SerializedName("tag")
-    private String tag;
-
-    @SerializedName("color")
-    private String color;
-
-    @SerializedName("criteria")
-    private List<Criteria> criteria;
-
-
-    public int getId() {
-        return id;
+    public String getErrorMessage() {
+        return errorMessage;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    private String errorMessage ;
+
+
+    public ScanResponse(List<ScanData> scanDataList) {
+        this.scanDataList = scanDataList;
     }
 
-    public String getName() {
-        return name;
+    public ScanResponse(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public List<ScanData> getScanDataList() {
+        return scanDataList;
     }
 
-    public String getTag() {
-        return tag;
-    }
-
-    public void setTag(String tag) {
-        this.tag = tag;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public List<Criteria> getCriteria() {
-        return criteria;
-    }
-
-    public void setCriteria(List<Criteria> criteria) {
-        this.criteria = criteria;
+    public void setScanDataList(List<ScanData> scanDataList) {
+        this.scanDataList = scanDataList;
     }
 
 }

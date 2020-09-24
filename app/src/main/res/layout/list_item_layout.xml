@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+    
+    <data>
+        <variable
+            name="scanData"
+            type="com.example.criteria_parser.model.ScanData" />
+        <variable
+            name="listener"
+            type="com.example.criteria_parser.listeners.ScanItemListener" />
+    </data>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:background="@color/colorPrimary"
     android:padding="0dp"
+    android:onClick="@{()-> listener.onItemClick(scanData)}"
     android:layout_height="wrap_content">
 
     <TextView
@@ -14,7 +24,7 @@
         android:padding="8dp"
         android:textStyle="bold"
         android:textSize="18dp"
-        android:text="Intraday buying seen in last 15 minutes"
+        android:text="@{scanData.name}"
         android:textColor="@color/textColorWhite"
         />
 
@@ -22,15 +32,15 @@
         android:id="@+id/tag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bullish"
+        android:text="@{scanData.tag}"
         android:paddingBottom="8dp"
         android:paddingStart="8dp"
-        android:textColor="@color/textColorGreen"
+        android:color="@{scanData.color}"
         />
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="5dp"
         android:src="@drawable/dotted_line"
         />
 

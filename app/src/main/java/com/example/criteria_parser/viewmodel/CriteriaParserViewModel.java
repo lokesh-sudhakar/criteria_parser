@@ -5,15 +5,16 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.MutableLiveData;
 
 import com.example.criteria_parser.RetrofitInstance;
 import com.example.criteria_parser.model.Criteria;
 import com.example.criteria_parser.model.CriteriaValues;
 import com.example.criteria_parser.model.Indicator;
+import com.example.criteria_parser.model.ScanData;
 import com.example.criteria_parser.model.ScanResponse;
 import com.example.criteria_parser.repository.CriteriaRepository;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
@@ -39,6 +40,7 @@ public class CriteriaParserViewModel extends AndroidViewModel {
     private CriteriaRepository repository;
     private CompositeDisposable compositeDisposable;
     private Gson gson;
+    private MutableLiveData<ScanResponse> scanListLiveData = new MutableLiveData<>();
 
     public CriteriaParserViewModel(@NonNull Application application) {
         super(application);
@@ -54,13 +56,20 @@ public class CriteriaParserViewModel extends AndroidViewModel {
                 .subscribe(this::onScanResponse, this::onError));
     }
 
-    public void onScanResponse(List<ScanResponse> response) {
-        for (ScanResponse scanResponse : response) {
-            Log.d(TAG, "id: " + scanResponse.getId());
-            Log.d(TAG, "name: " + scanResponse.getName());
-            Log.d(TAG, "tag :" + scanResponse.getTag());
-            Log.d(TAG, "color :" + scanResponse.getColor());
-            for (Criteria criteria : scanResponse.getCriteria()) {
+
+    public MutableLiveData<ScanResponse> getScanListLiveData() {
+        return scanListLiveData;
+    }
+
+
+    public void onScanResponse(List<ScanData> scanDataList) {
+        scanListLiveData.postValue(new ScanResponse(scanDataList));
+        for (ScanData scanData : scanDataList) {
+            Log.d(TAG, "id: " + scanData.getId());
+            Log.d(TAG, "name: " + scanData.getName());
+            Log.d(TAG, "tag :" + scanData.getTag());
+            Log.d(TAG, "color :" + scanData.getColor());
+            for (Criteria criteria : scanData.getCriteria()) {
                 Log.d(TAG, "type :" + criteria.getType());
                 Log.d(TAG, "text :" + criteria.getText());
                 String text = criteria.getText();
@@ -92,6 +101,7 @@ public class CriteriaParserViewModel extends AndroidViewModel {
     }
 
     public void onError(Throwable throwable) {
+        scanListLiveData.postValue(new ScanResponse(throwable.getMessage()));
         Log.d(TAG, "onError: " + throwable.getMessage());
     }
 }

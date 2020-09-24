@@ -1,6 +1,6 @@
 package com.example.criteria_parser.repository;
 
-import com.example.criteria_parser.model.ScanResponse;
+import com.example.criteria_parser.model.ScanData;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ public class CriteriaRepository {
         this.mRetrofit = mRetrofit;
     }
 
-    public Observable<List<ScanResponse>> getCardsData() {
+    public Observable<List<ScanData>> getCardsData() {
         return  mRetrofit.create(CriteriaParserAPI.class).getScanData();
     }
 }

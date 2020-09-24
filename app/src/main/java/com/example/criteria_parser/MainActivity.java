@@ -2,14 +2,12 @@ package com.example.criteria_parser;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 
 import com.example.criteria_parser.databinding.ActivityMainBinding;
 import com.example.criteria_parser.fragments.ListFragment;
-import com.example.criteria_parser.model.ScanResponse;
-import com.example.criteria_parser.viewmodel.CriteriaParserViewModel;
+import com.example.criteria_parser.model.ScanData;
 
 public class MainActivity extends AppCompatActivity implements ListFragment.ListFragmentListener {
 
@@ -28,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements ListFragment.List
     }
 
     @Override
-    public void onScanItemClick(ScanResponse scanResponse) {
+    public void onScanItemClick(ScanData scanData) {
 
     }
 }

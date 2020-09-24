@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">criteria_parser</string>
+    <string name="and">and</string>
+    <string name="set_parameters">Set Parameters</string>
 </resources>

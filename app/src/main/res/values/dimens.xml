@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="padding_8dp">8dp</dimen>
+    <dimen name="text_size_20sp">20sp</dimen>
+    <dimen name="spacing_12dp">12dp</dimen>
+    <dimen name="text_size_16sp">16sp</dimen>
+    <dimen name="spacing_8dp">8dp</dimen>
+    <dimen name="editText_width">140dp</dimen>
+    <dimen name="text_size_18sp">18sp</dimen>
+    <dimen name="dotted_line_height">5dp</dimen>
+</resources>

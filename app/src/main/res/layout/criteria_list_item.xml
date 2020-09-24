@@ -13,10 +13,10 @@
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="8dp"
+        android:padding="@dimen/padding_8dp"
         android:textStyle="bold"
-        android:textSize="20dp"
-        tools:text="nkjdnndjw"
+        android:textSize="@dimen/text_size_20sp"
+        tools:text="Hello"
         android:textColor="@color/textColorWhite"
         />
 
@@ -24,10 +24,9 @@
         android:id="@+id/and_delimeter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingBottom="8dp"
-        android:paddingStart="8dp"
-        tools:text="and"
-        android:text="and"
+        android:paddingBottom="@dimen/padding_8dp"
+        android:paddingStart="@dimen/padding_8dp"
+        android:text="@string/and"
         android:textColor="@color/textColorWhite"
         />
 </LinearLayout>

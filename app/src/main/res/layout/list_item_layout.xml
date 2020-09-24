@@ -21,9 +21,9 @@
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="8dp"
+        android:padding="@dimen/padding_8dp"
         android:textStyle="bold"
-        android:textSize="18dp"
+        android:textSize="@dimen/text_size_18sp"
         android:text="@{scanData.name}"
         android:textColor="@color/textColorWhite"
         />
@@ -33,14 +33,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@{scanData.tag}"
-        android:paddingBottom="8dp"
-        android:paddingStart="8dp"
+        android:paddingBottom="@dimen/padding_8dp"
+        android:paddingStart="@dimen/padding_8dp"
         android:color="@{scanData.color}"
         />
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="5dp"
+        android:layout_height="@dimen/dotted_line_height"
         android:src="@drawable/dotted_line"
         />
 

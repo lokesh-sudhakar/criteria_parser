@@ -9,12 +9,7 @@ import java.io.Serializable;
  * @author Lokesh chennamchetty
  * @date 24/09/2020
  */
-public class Indicator implements Serializable {
-
-
-    @SerializedName("type")
-    @Expose
-    private String type;
+public class Indicator extends BaseCriteria implements Serializable {
 
     @SerializedName("study_type")
     @Expose
@@ -35,15 +30,6 @@ public class Indicator implements Serializable {
     @SerializedName("default_value")
     @Expose
     private int defaultValue;
-
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
 
     public String getStudyType() {
         return studyType;

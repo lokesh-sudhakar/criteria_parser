@@ -102,6 +102,7 @@ public class DetailFragment extends Fragment implements CriteriaItemListener {
 
     @Override
     public void onCriteriaIndicatorClick(Indicator indicator) {
+        listeners.onCriteriaIndicatorClick(indicator);
         Log.d(TAG, "default value" +   indicator.getDefaultValue());
     }
 }

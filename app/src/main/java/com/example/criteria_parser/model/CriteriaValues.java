@@ -10,15 +10,11 @@ import java.util.List;
  * @author Lokesh chennamchetty
  * @date 24/09/2020
  */
-public class CriteriaValues implements Serializable {
+public class CriteriaValues extends BaseCriteria implements Serializable {
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
+    @SerializedName("values")
+    @Expose
+    private List<Double> values;
 
     public List<Double> getValues() {
         return values;
@@ -27,12 +23,4 @@ public class CriteriaValues implements Serializable {
     public void setValues(List<Double> values) {
         this.values = values;
     }
-
-    @SerializedName("type")
-    @Expose
-    private String type;
-
-    @SerializedName("values")
-    @Expose
-    private List<Double> values;
 }

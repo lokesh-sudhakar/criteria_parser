@@ -3,13 +3,14 @@ package com.example.criteria_parser.model;
 import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * @author Lokesh chennamchetty
  * @date 24/09/2020
  */
-public class ScanData {
+public class ScanData implements Serializable {
 
     @SerializedName("id")
     private int id;

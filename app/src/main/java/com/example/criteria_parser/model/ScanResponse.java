@@ -28,9 +28,4 @@ public class ScanResponse {
     public List<ScanData> getScanDataList() {
         return scanDataList;
     }
-
-    public void setScanDataList(List<ScanData> scanDataList) {
-        this.scanDataList = scanDataList;
-    }
-
 }

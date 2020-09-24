@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
 
 import com.example.criteria_parser.databinding.ActivityMainBinding;
+import com.example.criteria_parser.fragments.DetailFragment;
 import com.example.criteria_parser.fragments.ListFragment;
 import com.example.criteria_parser.model.ScanData;
 
@@ -27,6 +28,9 @@ public class MainActivity extends AppCompatActivity implements ListFragment.List
 
     @Override
     public void onScanItemClick(ScanData scanData) {
-
+        getSupportFragmentManager().beginTransaction()
+                .replace(binding.fragmentContainer.getId(), DetailFragment.newInstance(scanData))
+                .addToBackStack(null)
+                .commit();
     }
 }

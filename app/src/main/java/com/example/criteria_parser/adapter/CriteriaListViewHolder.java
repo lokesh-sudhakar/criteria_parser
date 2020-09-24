@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.criteria_parser.databinding.CriteriaListItemBinding;
 import com.example.criteria_parser.listeners.CriteriaItemListener;
 import com.example.criteria_parser.model.Criteria;
+import com.example.criteria_parser.utils.Constants;
 import com.example.criteria_parser.utils.SpanUtils;
 
 /**
@@ -30,12 +31,12 @@ public class CriteriaListViewHolder  extends RecyclerView.ViewHolder {
         if (isLastItem) {
             binding.andDelimeter.setVisibility(View.GONE);
         }
-        if (criteria.getType().equalsIgnoreCase("plain_text")) {
+        if (criteria.getType().equalsIgnoreCase(Constants.Type.PLAIN_TEXT)) {
             binding.name.setText(criteria.getText());
-        } else if (criteria.getType().equalsIgnoreCase("variable")) {
+        } else if (criteria.getType().equalsIgnoreCase(Constants.Type.VARIABLE)) {
             SpannableStringBuilder spannableString = SpanUtils.getCriteriaSpannableString(criteria, listener);
-            binding.name.setMovementMethod(LinkMovementMethod.getInstance());
             binding.name.setText(spannableString);
+            binding.name.setMovementMethod(LinkMovementMethod.getInstance());
         }
     }
 }

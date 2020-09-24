@@ -8,17 +8,10 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.criteria_parser.RetrofitInstance;
-import com.example.criteria_parser.model.Criteria;
-import com.example.criteria_parser.model.CriteriaValues;
-import com.example.criteria_parser.model.Indicator;
 import com.example.criteria_parser.model.ScanData;
 import com.example.criteria_parser.model.ScanResponse;
 import com.example.criteria_parser.repository.CriteriaRepository;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -30,24 +23,17 @@ import io.reactivex.schedulers.Schedulers;
  * @date 24/09/2020
  */
 
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class CriteriaParserViewModel extends AndroidViewModel {
 
     private static final String TAG = "criteria";
     private CriteriaRepository repository;
     private CompositeDisposable compositeDisposable;
-    private Gson gson;
     private MutableLiveData<ScanResponse> scanListLiveData = new MutableLiveData<>();
 
     public CriteriaParserViewModel(@NonNull Application application) {
         super(application);
         repository = new CriteriaRepository(RetrofitInstance.getRetrofit());
         compositeDisposable = new CompositeDisposable();
-         gson= new Gson();
-
     }
 
     public void fetchCriteria() {
@@ -64,40 +50,6 @@ public class CriteriaParserViewModel extends AndroidViewModel {
 
     public void onScanResponse(List<ScanData> scanDataList) {
         scanListLiveData.postValue(new ScanResponse(scanDataList));
-        for (ScanData scanData : scanDataList) {
-            Log.d(TAG, "id: " + scanData.getId());
-            Log.d(TAG, "name: " + scanData.getName());
-            Log.d(TAG, "tag :" + scanData.getTag());
-            Log.d(TAG, "color :" + scanData.getColor());
-            for (Criteria criteria : scanData.getCriteria()) {
-                Log.d(TAG, "type :" + criteria.getType());
-                Log.d(TAG, "text :" + criteria.getText());
-                String text = criteria.getText();
-                String type = criteria.getType();
-                Pattern pattern = Pattern.compile("\\$[(0-9)]+");
-                Matcher matcher = pattern.matcher(text);
-                List<String> patternKeys = new ArrayList<>();
-                while (matcher.find()) {
-                    Log.d(TAG, "regex keys: " + matcher.group(0));
-                    patternKeys.add(matcher.group(0));
-                }
-                if (type.equalsIgnoreCase("variable")) {
-                    JsonObject vaiableObject = criteria.getVariable();
-                    for (String key : patternKeys) {
-                        JsonObject keyObject = vaiableObject.getAsJsonObject(key);
-                        String keyType = keyObject.get("type").getAsString();
-                        if (keyType.equalsIgnoreCase("value")) {
-                            CriteriaValues criteriaValues = gson.fromJson(keyObject.toString(),CriteriaValues.class);
-                            Log.d(TAG, "default value"+ key+" : " +
-                                    Arrays.toString(criteriaValues.getValues().toArray()));
-                        } else if (keyType.equalsIgnoreCase("indicator")) {
-                            Indicator obj = gson.fromJson(keyObject.toString(),Indicator.class);
-                            Log.d(TAG, "default value"+ key+" : " +   obj.getDefaultValue());
-                        }
-                    }
-                }
-            }
-        }
     }
 
     public void onError(Throwable throwable) {

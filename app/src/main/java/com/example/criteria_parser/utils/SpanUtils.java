@@ -27,31 +27,29 @@ public class SpanUtils {
 
     public static SpannableStringBuilder getCriteriaSpannableString(Criteria criteria, CriteriaItemListener listener) {
         Gson gson = new Gson();
-        Matcher matcher = Pattern.compile("\\$[(0-9)]+").matcher(criteria.getText());
+        Matcher matcher = Pattern.compile(Constants.Regex.DOLLAR_REGEX).matcher(criteria.getText());
         SpannableStringBuilder spannableString = new SpannableStringBuilder(criteria.getText());
         while (matcher.find()) {
             Log.d(TAG, "regex keys: " + matcher.group(0));
-            String key  = matcher.group(0);
+            String key = matcher.group(0);
             JsonObject keyJsonObject = criteria.getVariable().getAsJsonObject(key);
-            String keyType = keyJsonObject.get("type").getAsString();
+            String keyType = keyJsonObject.get(Constants.Keys.TYPE).getAsString();
             String replaceableString = "";
             ClickableSpan clickableSpan = null;
-            if (keyType.equalsIgnoreCase("value")) {
-                CriteriaValues criteriaValues = gson.fromJson(keyJsonObject.toString(),CriteriaValues.class);
+            if (keyType.equalsIgnoreCase(Constants.Type.VALUE)) {
+                CriteriaValues criteriaValues = gson.fromJson(keyJsonObject.toString(), CriteriaValues.class);
                 replaceableString = BasicUtils.wrapParenthesis(criteriaValues.getValues().get(0).toString());
-                spannableString.replace(matcher.start(),matcher.end(),replaceableString,
-                        0, replaceableString.length());
                 clickableSpan = getValueClickableSpan(criteriaValues, listener);
-            } else if (keyType.equalsIgnoreCase("indicator")) {
-                Indicator indicator = gson.fromJson(keyJsonObject.toString(),Indicator.class);
+            } else if (keyType.equalsIgnoreCase(Constants.Type.INDICATOR)) {
+                Indicator indicator = gson.fromJson(keyJsonObject.toString(), Indicator.class);
                 replaceableString = BasicUtils.wrapParenthesis(indicator.getDefaultValue());
-                spannableString.replace(matcher.start(),matcher.end(),
-                        replaceableString,0,
-                        replaceableString.length());
+
                 clickableSpan = getIndicatorClickableSpan(indicator, listener);
             }
-            spannableString.setSpan(clickableSpan,matcher.start(),
-                    matcher.start()+replaceableString.length(),
+            spannableString.replace(matcher.start(), matcher.end(), replaceableString, 0,
+                    replaceableString.length());
+            spannableString.setSpan(clickableSpan, matcher.start(),
+                    matcher.start() + replaceableString.length(),
                     Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
         return spannableString;
@@ -63,6 +61,7 @@ public class SpanUtils {
             public void onClick(View textView) {
                 listener.onCriteriaValueClick(criteriaValues);
             }
+
             @Override
             public void updateDrawState(TextPaint ds) {
                 super.updateDrawState(ds);
@@ -77,6 +76,7 @@ public class SpanUtils {
             public void onClick(View textView) {
                 listener.onCriteriaIndicatorClick(indicator);
             }
+
             @Override
             public void updateDrawState(TextPaint ds) {
                 super.updateDrawState(ds);

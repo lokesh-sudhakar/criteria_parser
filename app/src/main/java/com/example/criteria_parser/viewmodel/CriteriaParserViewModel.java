@@ -58,16 +58,16 @@ public class CriteriaParserViewModel extends AndroidViewModel {
         return scanListLiveData;
     }
 
-    public void onScanResponse(List<ScanData> scanDataList) {
+    private void onScanResponse(List<ScanData> scanDataList) {
         scanListLiveData.setValue(new ScanResponse(parseCriterias(scanDataList)));
     }
 
-    public void onError(Throwable throwable) {
+    private void onError(Throwable throwable) {
         scanListLiveData.setValue(new ScanResponse(throwable.getMessage()));
         Log.d(TAG, "onError: " + throwable.getMessage());
     }
 
-    public List<ScanData> parseCriterias(List<ScanData> scanDataList) {
+    private List<ScanData> parseCriterias(List<ScanData> scanDataList) {
         Gson gson = new Gson();
         for (ScanData scanData : scanDataList) {
             for (Criteria criteria : scanData.getCriteria()) {
@@ -84,11 +84,11 @@ public class CriteriaParserViewModel extends AndroidViewModel {
                         JsonObject keyObject = criteria.getVariable().get(key);
                         String keyType = keyObject.get(Constants.Keys.TYPE).getAsString();
                         if (keyType.equalsIgnoreCase(Constants.Type.VALUE)) {
-                            CriteriaValues criteriaValues = gson.fromJson(keyObject.toString(),CriteriaValues.class);
-                            parsedVariable.put(key,criteriaValues);
+                            CriteriaValues criteriaValues = gson.fromJson(keyObject.toString(), CriteriaValues.class);
+                            parsedVariable.put(key, criteriaValues);
                         } else if (keyType.equalsIgnoreCase(Constants.Type.INDICATOR)) {
-                            Indicator indicator = gson.fromJson(keyObject.toString(),Indicator.class);
-                            parsedVariable.put(key,indicator);
+                            Indicator indicator = gson.fromJson(keyObject.toString(), Indicator.class);
+                            parsedVariable.put(key, indicator);
                         }
                     }
                     criteria.setParsedVariable(parsedVariable);

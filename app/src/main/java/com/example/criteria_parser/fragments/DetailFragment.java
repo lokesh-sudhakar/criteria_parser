@@ -37,7 +37,7 @@ public class DetailFragment extends Fragment implements CriteriaItemListener {
     private CriteriaClickListeners listeners;
 
 
-    public interface CriteriaClickListeners{
+    public interface CriteriaClickListeners {
         void onCriteriaValueClick(CriteriaValues criteriaValues);
 
         void onCriteriaIndicatorClick(Indicator indicator);
@@ -58,22 +58,22 @@ public class DetailFragment extends Fragment implements CriteriaItemListener {
         if (context instanceof CriteriaClickListeners) {
             listeners = (CriteriaClickListeners) context;
         } else {
-            throw  new IllegalArgumentException("Activity has not implemented the CriteriaClickListeners");
+            throw new IllegalArgumentException("Activity has not implemented the CriteriaClickListeners");
         }
     }
 
-    public DetailFragment(){
+    public DetailFragment() {
 
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_detail_layout,container,false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_detail_layout, container, false);
         extractData();
         initView();
         initRecyclerView();
-        return  binding.getRoot();
+        return binding.getRoot();
     }
 
     private void initView() {
@@ -81,7 +81,7 @@ public class DetailFragment extends Fragment implements CriteriaItemListener {
     }
 
     private void initRecyclerView() {
-        CriteriaListAdapter criteriaListAdapter = new CriteriaListAdapter(scanData.getCriteria(),this);
+        CriteriaListAdapter criteriaListAdapter = new CriteriaListAdapter(scanData.getCriteria(), this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         binding.recyclerView.setLayoutManager(layoutManager);
         binding.recyclerView.setAdapter(criteriaListAdapter);
@@ -103,6 +103,6 @@ public class DetailFragment extends Fragment implements CriteriaItemListener {
     @Override
     public void onCriteriaIndicatorClick(Indicator indicator) {
         listeners.onCriteriaIndicatorClick(indicator);
-        Log.d(TAG, "default value" +   indicator.getDefaultValue());
+        Log.d(TAG, "default value" + indicator.getDefaultValue());
     }
 }

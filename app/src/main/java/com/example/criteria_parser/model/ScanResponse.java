@@ -9,16 +9,14 @@ import java.util.List;
 public class ScanResponse {
 
     private List<ScanData> scanDataList;
-
-    public String getErrorMessage() {
-        return errorMessage;
-    }
-
-    private String errorMessage ;
-
+    private String errorMessage;
 
     public ScanResponse(List<ScanData> scanDataList) {
         this.scanDataList = scanDataList;
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
     }
 
     public ScanResponse(String errorMessage) {

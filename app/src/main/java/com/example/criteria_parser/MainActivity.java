@@ -15,7 +15,7 @@ import com.example.criteria_parser.model.Indicator;
 import com.example.criteria_parser.model.ScanData;
 
 public class MainActivity extends AppCompatActivity implements ListFragment.ListFragmentListener,
-    DetailFragment.CriteriaClickListeners{
+        DetailFragment.CriteriaClickListeners {
 
     private ActivityMainBinding binding;
 
@@ -23,10 +23,10 @@ public class MainActivity extends AppCompatActivity implements ListFragment.List
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_main);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         ListFragment fragment = new ListFragment();
         getSupportFragmentManager().beginTransaction()
-                .add(binding.fragmentContainer.getId(),fragment)
+                .add(binding.fragmentContainer.getId(), fragment)
                 .commit();
 
     }

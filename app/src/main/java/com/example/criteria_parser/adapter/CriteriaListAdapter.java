@@ -18,13 +18,13 @@ import java.util.List;
  * @author Lokesh chennamchetty
  * @date 24/09/2020
  */
-public class CriteriaListAdapter  extends RecyclerView.Adapter<CriteriaListViewHolder> {
+public class CriteriaListAdapter extends RecyclerView.Adapter<CriteriaListViewHolder> {
 
     private CriteriaListItemBinding binding;
     private List<Criteria> criteriaList;
     private CriteriaItemListener listener;
 
-    public CriteriaListAdapter(List<Criteria> criteriaList, CriteriaItemListener listener){
+    public CriteriaListAdapter(List<Criteria> criteriaList, CriteriaItemListener listener) {
         this.criteriaList = criteriaList;
         this.listener = listener;
     }
@@ -33,13 +33,13 @@ public class CriteriaListAdapter  extends RecyclerView.Adapter<CriteriaListViewH
     @Override
     public CriteriaListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                R.layout.criteria_list_item,parent,false);
+                R.layout.criteria_list_item, parent, false);
         return new CriteriaListViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull CriteriaListViewHolder holder, int position) {
-        holder.bind(criteriaList.get(position),position == criteriaList.size()-1,listener);
+        holder.bind(criteriaList.get(position), position == criteriaList.size() - 1, listener);
     }
 
     @Override

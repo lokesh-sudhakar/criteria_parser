@@ -17,7 +17,7 @@ import com.example.criteria_parser.utils.SpanUtils;
  * @author Lokesh chennamchetty
  * @date 24/09/2020
  */
-public class CriteriaListViewHolder  extends RecyclerView.ViewHolder {
+public class CriteriaListViewHolder extends RecyclerView.ViewHolder {
 
     private CriteriaListItemBinding binding;
 
@@ -27,7 +27,7 @@ public class CriteriaListViewHolder  extends RecyclerView.ViewHolder {
         this.binding = binding;
     }
 
-    public void bind(Criteria criteria,boolean isLastItem, CriteriaItemListener listener){
+    public void bind(Criteria criteria, boolean isLastItem, CriteriaItemListener listener) {
         if (isLastItem) {
             binding.andDelimeter.setVisibility(View.GONE);
         }

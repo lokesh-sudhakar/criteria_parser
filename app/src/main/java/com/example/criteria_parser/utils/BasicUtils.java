@@ -12,21 +12,20 @@ public class BasicUtils {
             return null;
         } else if (value.length() == 0) {
             return value;
-        } else if (value.length()>1) {
-            return  value.substring(0, 1).toUpperCase() + value.substring(1).toLowerCase();
+        } else if (value.length() > 1) {
+            return value.substring(0, 1).toUpperCase() + value.substring(1).toLowerCase();
         } else {
             return value.toUpperCase();
         }
     }
 
-    public static String wrapParenthesis(String value){
-        return "("+value+")";
+    public static String wrapParenthesis(String value) {
+        return "(" + value + ")";
     }
 
-    public static String wrapParenthesis(int value){
-        return "("+value+")";
+    public static String wrapParenthesis(int value) {
+        return "(" + value + ")";
     }
-
 
 
 }

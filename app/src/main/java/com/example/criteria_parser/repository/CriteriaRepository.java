@@ -20,6 +20,6 @@ public class CriteriaRepository {
     }
 
     public Observable<List<ScanData>> getCardsData() {
-        return  mRetrofit.create(CriteriaParserAPI.class).getScanData();
+        return mRetrofit.create(CriteriaParserAPI.class).getScanData();
     }
 }

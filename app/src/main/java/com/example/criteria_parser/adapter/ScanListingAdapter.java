@@ -24,7 +24,7 @@ public class ScanListingAdapter extends RecyclerView.Adapter<ScanListingViewHold
     private ListItemLayoutBinding binding;
     private ScanItemListener listener;
 
-    public ScanListingAdapter(List<ScanData> scanList, ScanItemListener listener){
+    public ScanListingAdapter(List<ScanData> scanList, ScanItemListener listener) {
         this.scanList = scanList;
         this.listener = listener;
     }
@@ -33,13 +33,13 @@ public class ScanListingAdapter extends RecyclerView.Adapter<ScanListingViewHold
     @Override
     public ScanListingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                R.layout.list_item_layout,parent,false);
+                R.layout.list_item_layout, parent, false);
         return new ScanListingViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ScanListingViewHolder holder, int position) {
-        holder.bind(scanList.get(position),listener);
+        holder.bind(scanList.get(position), listener);
     }
 
     @Override

@@ -37,7 +37,7 @@ public class SpanUtils {
                 clickableSpan = getIndicatorClickableSpan(indicator, listener);
             }
             int start = criteria.getText().indexOf(entry.getKey());
-            int end = start+entry.getKey().length();
+            int end = start + entry.getKey().length();
             spannableString.replace(start, end, replaceableString, 0,
                     replaceableString.length());
             spannableString.setSpan(clickableSpan, start,

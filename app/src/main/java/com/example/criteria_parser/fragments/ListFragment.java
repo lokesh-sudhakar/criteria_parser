@@ -37,7 +37,7 @@ public class ListFragment extends Fragment implements ScanItemListener {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         if (context instanceof ListFragmentListener) {
-            this.listener = (ListFragmentListener)context;
+            this.listener = (ListFragmentListener) context;
             this.activityContext = context;
         } else {
             throw new IllegalArgumentException("Activity has not implemented the ListFragmentListener");
@@ -56,30 +56,29 @@ public class ListFragment extends Fragment implements ScanItemListener {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_list_layout,container ,false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_list_layout, container, false);
         viewModel = new ViewModelProvider(this).get(CriteriaParserViewModel.class);
         viewModel.fetchCriteria();
         binding.progressView.setVisibility(View.VISIBLE);
-        viewModel.getScanListLiveData().observe(this,this::onScanListResponse);
+        viewModel.getScanListLiveData().observe(this, this::onScanListResponse);
         return binding.getRoot();
     }
 
     public void onScanListResponse(ScanResponse scanResponse) {
         binding.progressView.setVisibility(View.GONE);
         if (scanResponse.getErrorMessage() != null) {
-            Toast.makeText(getContext(),""+scanResponse.getErrorMessage(),Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "" + scanResponse.getErrorMessage(), Toast.LENGTH_SHORT).show();
             binding.errorText.setVisibility(View.VISIBLE);
             binding.errorText.setText(scanResponse.getErrorMessage());
             return;
         }
         ScanListingAdapter scanListingAdapter = new ScanListingAdapter(
-                scanResponse.getScanDataList(),this);
+                scanResponse.getScanDataList(), this);
         binding.recyclerView.setAdapter(scanListingAdapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(activityContext);
         binding.recyclerView.setLayoutManager(layoutManager);
         binding.recyclerView.hasFixedSize();
     }
-
 
 
 }

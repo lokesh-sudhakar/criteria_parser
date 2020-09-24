@@ -28,7 +28,7 @@ public class IndicatorCriteriaFragment extends Fragment {
     public static IndicatorCriteriaFragment newInstance(Indicator indicator) {
         IndicatorCriteriaFragment fragment = new IndicatorCriteriaFragment();
         Bundle bundle = new Bundle();
-        bundle.putSerializable(ARG_INDICATOR,indicator);
+        bundle.putSerializable(ARG_INDICATOR, indicator);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -37,14 +37,14 @@ public class IndicatorCriteriaFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_indicator_layout,container ,false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_indicator_layout, container, false);
         extractData();
         initViews();
         return binding.getRoot();
     }
 
     private void extractData() {
-        if (getArguments()!= null && getArguments().containsKey(ARG_INDICATOR)) {
+        if (getArguments() != null && getArguments().containsKey(ARG_INDICATOR)) {
             indicator = (Indicator) getArguments().getSerializable(ARG_INDICATOR);
         }
     }
@@ -52,6 +52,6 @@ public class IndicatorCriteriaFragment extends Fragment {
     private void initViews() {
         binding.name.setText(indicator.getStudyType().toUpperCase());
         binding.parameterName.setText(BasicUtils.toCamelCase(indicator.getParameterName()));
-        binding.parameterValue.setText(""+indicator.getDefaultValue());
+        binding.parameterValue.setText("" + indicator.getDefaultValue());
     }
 }

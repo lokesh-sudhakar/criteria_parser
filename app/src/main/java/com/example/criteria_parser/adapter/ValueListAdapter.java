@@ -21,7 +21,7 @@ public class ValueListAdapter extends RecyclerView.Adapter<ValueListAdapter.Valu
     private ValueListItemLayoutBinding binding;
     private List<Double> values;
 
-    public ValueListAdapter(List<Double> values){
+    public ValueListAdapter(List<Double> values) {
         this.values = values;
     }
 
@@ -29,7 +29,7 @@ public class ValueListAdapter extends RecyclerView.Adapter<ValueListAdapter.Valu
     @Override
     public ValueListAdapter.ValueListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
-                R.layout.value_list_item_layout,parent,false);
+                R.layout.value_list_item_layout, parent, false);
         return new ValueListAdapter.ValueListViewHolder(binding);
     }
 

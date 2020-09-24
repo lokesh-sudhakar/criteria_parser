@@ -27,10 +27,10 @@ public class CriteriaValueListFragment extends Fragment {
     private FragmentListLayoutBinding binding;
     private CriteriaValues criteriaValues;
 
-    public static CriteriaValueListFragment newInstance(CriteriaValues criteriaValues){
+    public static CriteriaValueListFragment newInstance(CriteriaValues criteriaValues) {
         CriteriaValueListFragment fragment = new CriteriaValueListFragment();
         Bundle bundle = new Bundle();
-        bundle.putSerializable(ARG_CRITERIA_VALUES,criteriaValues);
+        bundle.putSerializable(ARG_CRITERIA_VALUES, criteriaValues);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -38,7 +38,7 @@ public class CriteriaValueListFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_list_layout,container ,false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_list_layout, container, false);
         extractData();
         initRecyclerView();
         return binding.getRoot();
@@ -52,7 +52,7 @@ public class CriteriaValueListFragment extends Fragment {
     }
 
     private void extractData() {
-        if (getArguments()!= null && getArguments().containsKey(ARG_CRITERIA_VALUES)) {
+        if (getArguments() != null && getArguments().containsKey(ARG_CRITERIA_VALUES)) {
             criteriaValues = (CriteriaValues) getArguments().getSerializable(ARG_CRITERIA_VALUES);
         }
     }

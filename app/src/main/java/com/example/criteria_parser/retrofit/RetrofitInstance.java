@@ -16,7 +16,7 @@ public class RetrofitInstance {
 
     private static Retrofit retrofit;
 
-    public static Retrofit getRetrofit(){
+    public static Retrofit getRetrofit() {
         if (retrofit == null) {
             Gson gson = new GsonBuilder()
                     .setLenient()

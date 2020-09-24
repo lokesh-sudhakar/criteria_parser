@@ -1,5 +1,6 @@
-package com.example.criteria_parser;
+package com.example.criteria_parser.retrofit;
 
+import com.example.criteria_parser.BuildConfig;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

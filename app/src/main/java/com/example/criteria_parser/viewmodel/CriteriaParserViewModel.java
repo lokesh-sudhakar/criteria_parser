@@ -39,15 +39,15 @@ import io.reactivex.schedulers.Schedulers;
 public class CriteriaParserViewModel extends AndroidViewModel {
 
     private static final String TAG = "criteria";
-    private CompositeDisposable compositeDisposable;
     private MutableLiveData<ScanResponse> scanListLiveData = new MutableLiveData<>();
     @Inject
     CriteriaRepository repository;
+    @Inject
+    CompositeDisposable compositeDisposable;
 
     public CriteriaParserViewModel(@NonNull Application application) {
         super(application);
         App.getApplicationInstance().getAppComponent().inject(this);
-        compositeDisposable = new CompositeDisposable();
     }
 
     public void fetchCriteria() {

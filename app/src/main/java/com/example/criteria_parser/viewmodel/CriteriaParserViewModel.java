@@ -99,4 +99,11 @@ public class CriteriaParserViewModel extends AndroidViewModel {
         }
         return scanDataList;
     }
+
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        compositeDisposable.dispose();
+    }
 }
